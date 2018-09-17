@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% block title %}
+    首页
+{% endblock %}
+{% block page_css %}
+   <style type="text/css">
+        #navigation_id {
+            overflow: auto;
+            background: red;
+        }
+
+        #navigation_id > li {
+            float: left;
+            padding: 6px;
+            list-style: none;
+        }
+
+        #navigation_id a {
+            color: white;
+            font-size: 15px;
+            font-weight: inherit;
+        }
+
+        #navigation_id span {
+            color: white;
+            font-size: 20px;
+            font-weight: inherit;
+        }
+
+    </style>
+    {#   轮埠图样式#}
+
+    <style type="text/css">
+        #cate_id{
+            position: relative;
+        }
+        #lunbo{
+            position: absolute;
+            top: 100px;
+            z-index: -1;
+        }
+
+        .banner {
+            position: relative;
+            overflow: auto;
+            text-align: center;
+        }
+
+        .banner ul li {
+            list-style: none;
+            float: left;
+        }
+
+        #lunbo {
+            width: 100%;
+            height: 500px;
+        }
+
+        #lunbo .dots {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+        }
+
+        #lunbo .dots li {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 4px;
+            text-indent: -999em;
+            border: 2px solid #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: .4;
+            -webkit-transition: background .5s, opacity .5s;
+            -moz-transition: background .5s, opacity .5s;
+            transition: background .5s, opacity .5s;
+        }
+
+        #lunbo .dots li.active {
+            background: white;
+            opacity: 1;
+        }
+
+        #lunbo .arrow {
+            position: absolute;
+            top: 200px;
+        }
+
+        #lunbo #al {
+            left: 15px;
+        }
+
+        #lunbo #ar {
+            right: 15px;
+        }
+
+        #lunbo img {
+            width: 100%;
+            height: 500px;
+        }
+
+    </style>
+    {#    分类菜单样式#}
+    <style type="text/css">
+        #cate_id {
+            height: 500px;
+            position: relative;
+        }
+
+        #cate_id > li {
+            width: 200px;
+            list-style: none;
+        }
+
+        #cate_id > li:hover {
+            background: aqua;
+        }
+
+        .sub {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 200px;
+            width: 800px;
+            height: 500px;
+            background: aqua;
+        }
+        .sub li{
+            list-style: none;
+        }
+        .sub div {
+            display: inline-block;
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block page_head %}
+    {#   头部部分 #}
+    {# 1>登陆注销 购物车 订单 #}
+    {% include 'include/top.html' %}
+    {# logo搜索按钮 #}
+    {% include 'include/serach.html' %}
+{% endblock %}
+
+{% block  page_main%}
+    {# 导航菜单  分类菜单  轮播图 #}
+    {% include 'include/home/home_top_page.html' %}
+{% endblock %}
+
+{% block page_footer %}
+
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block page_jq %}
+ <script src="{% static 'js/unslider.min.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#lunbo').unslider({
+                dots: true
+            });
+
+            $("#cate_id>li").mouseover(function () {
+                {#当li鼠标移入之后,当前的ul要显示,其他的要隐藏#}
+                $('.sub').hide();
+                $(this).find('ul').show()
+            });
+
+            $("#cate_id").mouseleave(function () {
+                $(this).find('ul').hide()
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}
+
+{% load staticfiles %}
